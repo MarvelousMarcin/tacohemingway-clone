@@ -1,6 +1,6 @@
 const MainHeader = () => {
   return (
-    <header className="w-full h-9 flex flex-row text-[10px] items-center justify-center md:justify-end gap-6 md:px-48">
+    <header className="w-full h-9 flex flex-row text-[10px] items-center justify-center md:justify-end gap-6 md:px-24">
       <div className="flex gap-2">
         <div className="border-black cursor-pointer hover:underline">
           Logowanie
