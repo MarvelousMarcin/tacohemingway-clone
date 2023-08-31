@@ -7,7 +7,7 @@ const ShopContent = async () => {
   console.log(data);
 
   return (
-    <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 align-middle content-center items-center mt-7">
+    <section className="grid grid-cols-2 min-h-[70vh] sm:grid-cols-3 md:grid-cols-4 gap-2 px-6 xl:px-0 align-top content-start items-center mt-7">
       {data.map((item) => (
         <Product
           key={item.id}

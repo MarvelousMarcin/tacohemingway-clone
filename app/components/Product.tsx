@@ -46,8 +46,8 @@ const Product: FC<ProductProps> = ({ img, name, price, status }) => {
         {hasMoreThanOneFoto && (
           <Image
             src={isHovering ? img[1] : img[0]}
-            width={200}
-            height={200}
+            width={220}
+            height={220}
             alt={`img-${name}`}
           />
         )}
@@ -58,7 +58,7 @@ const Product: FC<ProductProps> = ({ img, name, price, status }) => {
       <h1 className="text-sm mt-4 text-center">{name}</h1>
       <div className="text-sm font-bold">{statusValue}</div>
       <div className="text-sm tracking-widest">{price},00 zł</div>
-      <div className="w-5 h-[2px] bg-gray-300 mt-3"></div>
+      <div className="w-6 h-[2px] bg-gray-300 mt-3"></div>
     </div>
   );
 };
