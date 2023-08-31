@@ -22,11 +22,11 @@ const Product: FC<ProductProps> = ({ img, name, price, status }) => {
       : "Niedostępny";
 
   return (
-    <div className="flex justify-start flex-col items-center h-[20rem]">
+    <div className="flex justify-start flex-col items-center">
       <motion.div
         onHoverStart={() => setIsHovering(true)}
         onHoverEnd={() => setIsHovering(false)}
-        className="border-[0.2px] p-3 border-gray-300 cursor-pointer relative overflow-hidden"
+        className="border-[0.2px] p-3 border-gray-300 cursor-pointer relative overflow-hidden flex justify-center items-center"
       >
         <motion.div
           initial={{ y: "5rem" }}
@@ -52,7 +52,7 @@ const Product: FC<ProductProps> = ({ img, name, price, status }) => {
           />
         )}
         {!hasMoreThanOneFoto && (
-          <Image src={img[0]} width={200} height={200} alt={`img-${name}`} />
+          <Image src={img[0]} width={220} height={220} alt={`img-${name}`} />
         )}
       </motion.div>
       <h1 className="text-sm mt-4 text-center">{name}</h1>
