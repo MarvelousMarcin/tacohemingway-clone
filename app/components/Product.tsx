@@ -2,16 +2,19 @@
 import { FC, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heart, ShoppingBasket, ShoppingCart } from "lucide-react";
+import { Heart, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 interface ProductProps {
   name: string;
   price: number;
   img: string[];
   status: "AVAILABLE" | "PREORDER" | "UNAVAILABLE";
+  id: string;
 }
 
-const Product: FC<ProductProps> = ({ img, name, price, status }) => {
+const Product: FC<ProductProps> = ({ img, name, price, status, id }) => {
   const hasMoreThanOneFoto = img.length > 1;
+  const router = useRouter();
 
   const [isHovering, setIsHovering] = useState(false);
   const statusValue =
@@ -24,6 +27,7 @@ const Product: FC<ProductProps> = ({ img, name, price, status }) => {
   return (
     <div className="flex justify-start flex-col items-center">
       <motion.div
+        onClick={() => router.push(`/products/${id}`)}
         onHoverStart={() => setIsHovering(true)}
         onHoverEnd={() => setIsHovering(false)}
         className="border-[0.2px] p-3 border-gray-300 cursor-pointer relative overflow-hidden flex justify-center items-center"
@@ -46,13 +50,13 @@ const Product: FC<ProductProps> = ({ img, name, price, status }) => {
         {hasMoreThanOneFoto && (
           <Image
             src={isHovering ? img[1] : img[0]}
-            width={220}
-            height={220}
+            width={250}
+            height={250}
             alt={`img-${name}`}
           />
         )}
         {!hasMoreThanOneFoto && (
-          <Image src={img[0]} width={220} height={220} alt={`img-${name}`} />
+          <Image src={img[0]} width={250} height={250} alt={`img-${name}`} />
         )}
       </motion.div>
       <h1 className="text-sm mt-4 text-center">{name}</h1>
