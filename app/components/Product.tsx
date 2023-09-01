@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
+
 interface ProductProps {
   name: string;
   price: number;

@@ -3,6 +3,12 @@ import { FC, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Minus, Plus, X } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/components/ui/accordion";
 
 interface ProductDetailsProps {
   name: string;
@@ -20,18 +26,18 @@ const ProductDetails: FC<ProductDetailsProps> = ({
   const [prodQuant, setProdQuant] = useState(1);
 
   return (
-    <section className="flex mt-8 justify-evenly w-full">
+    <section className="flex mt-8 justify-evenly w-full items-start">
       <motion.div className="border-[0.2px] p-3 border-gray-300 cursor-pointer relative overflow-hidden flex justify-center items-center">
         <Image src={img[0]} width={550} height={550} alt={`img-${name}`} />
       </motion.div>
       <article className="flex flex-col gap-5 justify-start items-start w-[40%]">
         <h1 className="text-[2.4rem] font-bold">{name}</h1>
         <section className="w-2/3 flex flex-col gap-8">
-          <h2>
+          <h2 className="text-xs">
             Nasza cena: <span className="text-2xl font-bold">{price} </span>zł
           </h2>
           <div className="flex justify-between items-center">
-            <h1>Rozmiar: </h1>
+            <h1 className="text-xs">Rozmiar: </h1>
             <select className="w-32 py-1 px-2">
               <option>S</option>
               <option>M</option>
@@ -41,7 +47,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({
           </div>
 
           <div className="flex justify-between w-full">
-            <div>Ilość: </div>
+            <div className="text-xs">Ilość: </div>
 
             <section className="flex justify-center items-center gap-2">
               <input
@@ -56,7 +62,12 @@ const ProductDetails: FC<ProductDetailsProps> = ({
                 <Plus className="text-white" />
               </button>
               <button
-                onClick={() => setProdQuant((prev) => prev - 1)}
+                onClick={() =>
+                  setProdQuant((prev) => {
+                    if (prev == 0) return prev;
+                    else return prev - 1;
+                  })
+                }
                 className="bg-black p-[2px]"
               >
                 <Minus className="text-white" />
@@ -69,6 +80,31 @@ const ProductDetails: FC<ProductDetailsProps> = ({
             DODAJ DO KOSZYKA
           </button>
         </section>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1" className="border-t-[1px] border-black">
+            <AccordionTrigger className="text-xl">OPIS</AccordionTrigger>
+            <AccordionContent>
+              Skład: 100% bawełna
+              <br />
+              Wymiary: Rozmiar / długość / szerokość pod pachami
+              <br /> S / 69 cm / 61 cm
+              <br /> M / 74 cm / 65 cm
+              <br /> L / 77 cm / 68 cm <br />
+              XL / 80 cm / 71 cm
+              <br /> XXL / 83 cm / 74 cm
+              <br /> projekt: Ola Niepsuj
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2" className="border-y-[1px] border-black">
+            <AccordionTrigger className="text-xl">
+              DANE TECHNICZNE
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. It comes with default styles that matches the other
+              components&apos; aesthetic.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </article>
     </section>
   );

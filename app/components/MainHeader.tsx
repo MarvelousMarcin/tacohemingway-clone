@@ -11,7 +11,7 @@ const MainHeader = () => {
         <div className="cursor-pointer hover:underline">Rejestracja</div>
       </div>
       <ShoppingCart size={15} />
-      <div className="text-xs hidden md:block">170,00 zł</div>
+      <div className="text-xs hidden md:block">0,00 zł</div>
       <button className="bg-black text-white text-[10px] px-4 py-1 hidden md:block cursor-pointer">
         DO KASY
       </button>
