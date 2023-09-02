@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import Product from "./Product";
 
-export const revalidate = 1000;
+export const revalidate = 5;
 
 const ShopContent = async () => {
   const data = await prisma.product.findMany({});
