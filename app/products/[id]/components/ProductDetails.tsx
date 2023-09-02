@@ -2,7 +2,7 @@
 import { FC, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Minus, Plus, X } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
