@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductDetails from "./components/ProductDetails";
 import OtherProducts from "./components/OtherProducts";
+import AddedToBasket from "@/app/components/AddedToBasket";
 
 export default async function Product({ params }: { params: { id: string } }) {
   const prodId = params.id;
@@ -50,8 +51,10 @@ export default async function Product({ params }: { params: { id: string } }) {
         status={product.status}
         key={product.id}
         type={product.type!}
+        id={product.id}
       />
       <OtherProducts otherProducts={otherProducts} />
+      <AddedToBasket />
     </main>
   );
 }

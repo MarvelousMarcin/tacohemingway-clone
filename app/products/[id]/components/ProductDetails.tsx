@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
 import { $Enums } from "@prisma/client";
+import { useStore } from "@/app/store/store";
 
 export interface ProductDetailsProps {
   name: string;
@@ -17,6 +18,7 @@ export interface ProductDetailsProps {
   img: string[];
   status: "AVAILABLE" | "PREORDER" | "UNAVAILABLE";
   type: $Enums.Type;
+  id: string;
 }
 
 const ProductDetails: FC<ProductDetailsProps> = ({
@@ -24,8 +26,10 @@ const ProductDetails: FC<ProductDetailsProps> = ({
   price,
   img,
   type,
+  id,
 }) => {
   const [prodQuant, setProdQuant] = useState(1);
+  const { setIsAddedToBasket, addToBasket, setAddedProduct } = useStore();
 
   return (
     <section className="flex mt-8 justify-evenly w-full items-center md:items-start md:flex-row flex-col max-w-[90rem]">
@@ -80,7 +84,26 @@ const ProductDetails: FC<ProductDetailsProps> = ({
             </section>
           </div>
 
-          <button className="text-white bg-black px-2 py-2 font-bold text-md ">
+          <button
+            onClick={() => {
+              setIsAddedToBasket(true);
+              setAddedProduct({
+                id,
+                img: img[0],
+                name,
+                price,
+                quantity: prodQuant,
+              });
+              addToBasket({
+                id,
+                img: img[0],
+                name,
+                price,
+                quantity: prodQuant,
+              });
+            }}
+            className="text-white bg-black px-2 py-2 font-bold text-md "
+          >
             DODAJ DO KOSZYKA
           </button>
         </section>
