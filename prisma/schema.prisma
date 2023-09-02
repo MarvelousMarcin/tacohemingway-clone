@@ -16,10 +16,16 @@ enum Status {
   UNAVAILABLE
 }
 
+enum Type {
+  CD
+  TSHIRT
+}
+
 model Product  { 
     id        String      @id @default(uuid())
     name      String
     price     Float
     img       String[]
     status    Status
+    type      Type?       @default(CD)
 }

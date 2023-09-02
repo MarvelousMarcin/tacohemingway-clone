@@ -49,6 +49,7 @@ export default async function Product({ params }: { params: { id: string } }) {
         price={product.price}
         status={product.status}
         key={product.id}
+        type={product.type!}
       />
       <OtherProducts otherProducts={otherProducts} />
     </main>

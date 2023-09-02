@@ -9,19 +9,21 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
+import { $Enums } from "@prisma/client";
 
 export interface ProductDetailsProps {
   name: string;
   price: number;
   img: string[];
   status: "AVAILABLE" | "PREORDER" | "UNAVAILABLE";
+  type: $Enums.Type;
 }
 
 const ProductDetails: FC<ProductDetailsProps> = ({
   name,
   price,
   img,
-  status,
+  type,
 }) => {
   const [prodQuant, setProdQuant] = useState(1);
 
@@ -36,15 +38,17 @@ const ProductDetails: FC<ProductDetailsProps> = ({
           <h2 className="text-xs">
             Nasza cena: <span className="text-2xl font-bold">{price} </span>zł
           </h2>
-          <div className="flex justify-between items-center w-full md:w-2/3">
-            <h1 className="text-xs">Rozmiar: </h1>
-            <select className="w-24 text-[12px] py-1 px-2">
-              <option>S</option>
-              <option>M</option>
-              <option>L</option>
-              <option>XL</option>
-            </select>
-          </div>
+          {type === "TSHIRT" && (
+            <div className="flex justify-between items-center w-full md:w-2/3">
+              <h1 className="text-xs">Rozmiar: </h1>
+              <select className="w-24 text-[12px] py-1 px-2">
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+              </select>
+            </div>
+          )}
 
           <div className="flex justify-between items-center w-full md:w-2/3">
             <div className="text-xs">Ilość: </div>
