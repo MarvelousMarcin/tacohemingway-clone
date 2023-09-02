@@ -8,6 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/app/components/ui/popover";
+import Link from "next/link";
 
 const MainHeader = () => {
   const { basket, removeItemFromBasket } = useStore();
@@ -61,16 +62,23 @@ const MainHeader = () => {
                 );
               })}
             </div>
-            <button className="bg-black text-white text-[12px] py-1">
-              ZAPŁAĆ
-            </button>
+            <div className="flex justify-between text-[11px] items-center">
+              <div>Razem: {fullPrice} zł</div>
+              <Link href="/basket">
+                <button className="bg-black text-white text-[11px] p-1">
+                  ZAPŁAĆ
+                </button>
+              </Link>
+            </div>
           </div>
         </PopoverContent>
       </Popover>
       <div className="text-xs hidden md:block">{fullPrice},00 zł</div>
-      <button className="bg-black text-white text-[10px] px-4 py-1 hidden md:block cursor-pointer">
-        DO KASY
-      </button>
+      <Link href="/basket">
+        <button className="bg-black text-white text-[10px] px-4 py-1 hidden md:block cursor-pointer">
+          DO KASY
+        </button>
+      </Link>
     </header>
   );
 };
