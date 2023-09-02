@@ -1,9 +1,11 @@
 "use client";
+"use client";
 import { FC, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useStore } from "../store/store";
 
 interface ProductProps {
   name: string;
@@ -16,6 +18,7 @@ interface ProductProps {
 const Product: FC<ProductProps> = ({ img, name, price, status, id }) => {
   const hasMoreThanOneFoto = img.length > 1;
   const router = useRouter();
+  const { setIsAddedToBasket, addToBasket, setAddedProduct } = useStore();
 
   const [isHovering, setIsHovering] = useState(false);
   const statusValue =
@@ -28,7 +31,6 @@ const Product: FC<ProductProps> = ({ img, name, price, status, id }) => {
   return (
     <div className="flex justify-start flex-col items-center">
       <motion.div
-        onClick={() => router.push(`/products/${id}`)}
         onHoverStart={() => setIsHovering(true)}
         onHoverEnd={() => setIsHovering(false)}
         className="border-[0.2px] p-3 border-gray-300 cursor-pointer relative overflow-hidden flex justify-center items-center"
@@ -44,12 +46,20 @@ const Product: FC<ProductProps> = ({ img, name, price, status, id }) => {
           <button className=" p-[4px] border-[1px] border-black">
             <Heart className="fill-black" size={15} />
           </button>
-          <button className="p-[4px] border-[1px] border-black bg-black">
+          <button
+            className="p-[4px] border-[1px] border-black bg-black"
+            onClick={() => {
+              setIsAddedToBasket(true);
+              setAddedProduct({ id, img: img[0], name, price, quantity: 1 });
+              addToBasket({ id, img: img[0], name, price, quantity: 1 });
+            }}
+          >
             <ShoppingCart className="fill-white text-white" size={15} />
           </button>
         </motion.div>
         {hasMoreThanOneFoto && (
           <Image
+            onClick={() => router.push(`/products/${id}`)}
             src={isHovering ? img[1] : img[0]}
             width={250}
             height={250}
@@ -57,7 +67,13 @@ const Product: FC<ProductProps> = ({ img, name, price, status, id }) => {
           />
         )}
         {!hasMoreThanOneFoto && (
-          <Image src={img[0]} width={250} height={250} alt={`img-${name}`} />
+          <Image
+            onClick={() => router.push(`/products/${id}`)}
+            src={img[0]}
+            width={250}
+            height={250}
+            alt={`img-${name}`}
+          />
         )}
       </motion.div>
       <h1 className="text-sm mt-4 text-center">{name}</h1>
