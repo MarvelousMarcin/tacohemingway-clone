@@ -290,7 +290,11 @@ export default function Taco() {
         className="w-screen min-h-[100vh] fixed top-0 left-0 bg-[#141414] z-40 text-white flex flex-col justify-center items-center"
       >
         <div className="overflow-hidden">
-          <motion.div ref={ref1} initial={{ y: "100%" }} className="text-3xl">
+          <motion.div
+            ref={ref1}
+            initial={{ y: "100%" }}
+            className="text-[3rem]"
+          >
             Taco Hemingway
           </motion.div>
         </div>

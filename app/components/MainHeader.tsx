@@ -18,6 +18,9 @@ const MainHeader = () => {
   );
   return (
     <header className="w-full h-9 flex flex-row text-[10px] items-center justify-center md:justify-end gap-4 md:px-24">
+      <Link href="/taco">
+        <div className="cursor-pointer font-bold">Coś specjalnego </div>
+      </Link>
       <div className="flex gap-2">
         <div className="border-black cursor-pointer hover:underline">
           Logowanie
