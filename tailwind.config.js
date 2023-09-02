@@ -26,6 +26,12 @@ module.exports = {
           to: { height: 0 },
         },
       },
+      backgroundImage: {
+        "taco-bg-1": "url('/assets/bg1.jpg')",
+        "taco-bg-2": "url('/assets/bg2.jpg')",
+        "taco-bg-3": "url('/assets/bg3.jpg')",
+        "taco-bg-4": "url('/assets/bg4.jpg')",
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
