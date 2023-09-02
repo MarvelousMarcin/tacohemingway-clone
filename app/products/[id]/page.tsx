@@ -3,11 +3,16 @@ import prisma from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import ProductDetails from "./components/ProductDetails";
+import OtherProducts from "./components/OtherProducts";
 
 export default async function Product({ params }: { params: { id: string } }) {
   const prodId = params.id;
 
   const product = await prisma.product.findUnique({ where: { id: prodId } });
+  const otherProducts = await prisma.product.findMany({
+    where: { NOT: { id: prodId } },
+    take: 4,
+  });
 
   if (!product)
     return (
@@ -27,7 +32,7 @@ export default async function Product({ params }: { params: { id: string } }) {
     );
 
   return (
-    <main className="min-h-screen flex flex-col justify-start items-center">
+    <main className="min-h-screen flex flex-col justify-start items-center w-[90%] mx-auto">
       <MainHeader />
       <Link href="/">
         <Image
@@ -45,6 +50,7 @@ export default async function Product({ params }: { params: { id: string } }) {
         status={product.status}
         key={product.id}
       />
+      <OtherProducts otherProducts={otherProducts} />
     </main>
   );
 }
