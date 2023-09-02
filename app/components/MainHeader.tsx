@@ -2,6 +2,7 @@
 
 import { ShoppingCart } from "lucide-react";
 import { useStore } from "../store/store";
+import Image from "next/image";
 import {
   Popover,
   PopoverContent,
@@ -9,7 +10,7 @@ import {
 } from "@/app/components/ui/popover";
 
 const MainHeader = () => {
-  const { basket } = useStore();
+  const { basket, removeItemFromBasket } = useStore();
   const fullPrice = basket.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,
     0
@@ -29,13 +30,40 @@ const MainHeader = () => {
         </PopoverTrigger>
         <PopoverContent className="w-80">
           <div className="grid gap-4">
-            <div className="space-y-2">
-              <h4 className="font-medium leading-none">Dimensions</h4>
-              <p className="text-sm text-muted-foreground">
-                Set the dimensions for the layer.
-              </p>
+            <div className="space-y-2 border-b-[2px] border-b-gray-300 p-2">
+              <h4 className="font-medium leading-none">KOSZYK</h4>
             </div>
-            <div className="grid gap-2"></div>
+            <div className="flex flex-col gap-2">
+              {basket.length === 0 && (
+                <div className="text-[11px]">Koszyk jest pusty</div>
+              )}
+              {basket.map((prod) => {
+                return (
+                  <div
+                    key={prod.id}
+                    className="flex flex-row items-center gap-4 text-[12px] justify-start"
+                  >
+                    <Image src={prod?.img!} width={90} height={90} alt="foto" />
+                    <section>
+                      <h1>{prod.name}</h1>
+                      <p>
+                        {prod.quantity} x {prod.price} zł
+                      </p>
+                    </section>
+                    <div className="flex-grow"></div>
+                    <div
+                      className="cursor-pointer"
+                      onClick={() => removeItemFromBasket(prod.id)}
+                    >
+                      Usuń
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <button className="bg-black text-white text-[12px] py-1">
+              ZAPŁAĆ
+            </button>
           </div>
         </PopoverContent>
       </Popover>

@@ -15,7 +15,7 @@ const AddedToBasket: FC<AddedToBasketProps> = ({}) => {
     <>
       {isAddedToBasket && <Backdrop />}
       {isAddedToBasket && (
-        <div className="w-96 h-fit bg-white fixed top-16 flex flex-col p-2">
+        <div className="max-w-[33rem] w-[80%] h-fit bg-white fixed top-16 flex flex-col p-2">
           <h1 className="mb-1">DODANIE PRODUKTU DO KOSZYKA</h1>
           <div className="h-[2px] w-full bg-black"></div>
 

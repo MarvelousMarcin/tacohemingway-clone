@@ -18,6 +18,7 @@ type Action = {
   setIsAddedToBasket: (value: boolean) => void;
   setAddedProduct: (product: Product) => void;
   addToBasket: (product: Product) => void;
+  removeItemFromBasket: (id: string) => void;
 };
 
 // Create your store, which includes both state and (optionally) actions
@@ -29,4 +30,6 @@ export const useStore = create<State & Action>((set) => ({
   setAddedProduct: (product) => set(() => ({ addedProduct: product })),
   addToBasket: (product) =>
     set((state) => ({ basket: [...state.basket, product] })),
+  removeItemFromBasket: (id) =>
+    set((state) => ({ basket: state.basket.filter((prod) => prod.id !== id) })),
 }));
