@@ -1,12 +1,45 @@
-import { FC } from "react";
+"use client";
 
-interface TopMenuProps {}
+import clsx from "clsx";
+import { Dispatch, FC, MutableRefObject, SetStateAction } from "react";
 
-const TopMenu: FC<TopMenuProps> = ({}) => {
+interface TopMenuProps {
+  setIsAboutOpen: Dispatch<SetStateAction<boolean>>;
+  isAboutOpen: boolean;
+  didMountRef: MutableRefObject<boolean>;
+}
+
+const TopMenu: FC<TopMenuProps> = ({
+  setIsAboutOpen,
+  isAboutOpen,
+  didMountRef,
+}) => {
   return (
-    <menu className="flex text-white gap-7 text-sm fixed top-4 z-40 ">
-      <div className="cursor-pointer drop-shadow-xl">Work</div>
-      <div className="cursor-pointer text-[#5a5a5a] drop-shadow-2xl">About</div>
+    <menu className="flex text-white gap-7 text-sm fixed top-4 z-50 ">
+      <div
+        onClick={() => {
+          setIsAboutOpen(false);
+          didMountRef.current = false;
+        }}
+        className={clsx(
+          "cursor-pointer  drop-shadow-2xl",
+          isAboutOpen && "text-[#5a5a5a]"
+        )}
+      >
+        Work
+      </div>
+      <div
+        onClick={() => {
+          setIsAboutOpen(true);
+          didMountRef.current = false;
+        }}
+        className={clsx(
+          "cursor-pointer  drop-shadow-2xl",
+          !isAboutOpen && "text-[#5a5a5a]"
+        )}
+      >
+        About
+      </div>
     </menu>
   );
 };
