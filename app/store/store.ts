@@ -29,7 +29,25 @@ export const useStore = create<State & Action>((set) => ({
   setIsAddedToBasket: (value) => set(() => ({ isAddedToBasket: value })),
   setAddedProduct: (product) => set(() => ({ addedProduct: product })),
   addToBasket: (product) =>
-    set((state) => ({ basket: [...state.basket, product] })),
+    set((state) => {
+      console.log(product);
+      const isItemWithId = state.basket.find((prod) => prod.id === product.id);
+
+      if (isItemWithId) {
+        return {
+          basket: state.basket.map((prod) => {
+            if (prod.id === product.id) {
+              return {
+                ...isItemWithId,
+                quantity: prod.quantity + product.quantity,
+              };
+            } else return prod;
+          }),
+        };
+      } else {
+        return { basket: [...state.basket, product] };
+      }
+    }),
   removeItemFromBasket: (id) =>
     set((state) => ({ basket: state.basket.filter((prod) => prod.id !== id) })),
 }));
