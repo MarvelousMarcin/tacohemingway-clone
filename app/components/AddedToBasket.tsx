@@ -5,6 +5,7 @@ import { useStore } from "../store/store";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface AddedToBasketProps {}
 
@@ -50,9 +51,11 @@ const AddedToBasket: FC<AddedToBasketProps> = ({}) => {
             >
               KONTYNUUJ ZAKUPY
             </button>
-            <button className="bg-black text-white px-2">
-              PRZEJDŹ DO KOSZYKA
-            </button>
+            <Link href="/basket">
+              <button className="bg-black text-white px-2">
+                PRZEJDŹ DO KOSZYKA
+              </button>
+            </Link>
           </section>
 
           <div

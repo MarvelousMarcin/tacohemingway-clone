@@ -13,7 +13,6 @@ import { Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 const raleway = Poppins({ subsets: ["latin"], weight: ["400"] });
 const cs = ["Trójkąt Warszawki", "Umowa o dzieło", "Marmur", "Szprycer"];
-import { usePrevious } from "@uidotdev/usehooks";
 
 export default function Taco() {
   const [scope, animate] = useAnimate();
@@ -30,8 +29,6 @@ export default function Taco() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   const [currentCD, setCurrentCD] = useState(0);
-  const previousCD = usePrevious(currentCD);
-  console.log(currentCD, previousCD);
   const [ease, setEase] = useState(false);
   const isInView = useInView(text, { margin: "-50%" });
 
@@ -207,6 +204,12 @@ export default function Taco() {
     bg2,
     isInView,
     textAnimate,
+    ref1,
+    ref2,
+    ref3,
+    ref1Anim,
+    ref2Anim,
+    ref3Anim,
   ]);
 
   return (
@@ -238,7 +241,7 @@ export default function Taco() {
         className="w-full h-screen bg-center bg-cover bg-taco-bg-4 bg-no-repeat flex justify-evenly items-center fixed"
       ></motion.div>
 
-      <motion.div className="flex justify-center items-center gap-16">
+      <motion.div className="flex justify-evenly md:flex-row flex-col md:justify-center items-center gap-16">
         <motion.div
           style={{ zIndex: currentCD === 0 ? "-20" : "1" }}
           whileTap={{ rotate: "90deg" }}
@@ -260,7 +263,7 @@ export default function Taco() {
             ref={scope}
             initial={{ y: "-100%" }}
             transition={{ ease: [0.39, 1, 0.265, 0.9] }}
-            className="text-white text-[3rem] font-bold drop-shadow-xl cursor-pointer min-w-[30rem] text-center"
+            className="text-white text-[2rem] md:text-[3rem] font-bold drop-shadow-xl cursor-pointer min-w-[30rem] text-center"
           >
             {cs[0]}
           </motion.div>
