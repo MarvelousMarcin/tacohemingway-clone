@@ -296,7 +296,7 @@ export default function Taco() {
           <motion.div
             ref={ref1}
             initial={{ y: "100%" }}
-            className="text-[3rem]"
+            className="text-[2rem] md:text-[3rem]"
           >
             Taco Hemingway
           </motion.div>
