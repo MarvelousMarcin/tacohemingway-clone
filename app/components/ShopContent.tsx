@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import Product from "./Product";
 
-export const revalidate = 5;
+export const dynamic = "force-dynamic";
 
 const ShopContent = async () => {
   const data = await prisma.product.findMany({});
