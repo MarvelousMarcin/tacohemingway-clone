@@ -12,6 +12,10 @@ Basic online shop mock up. Based on popular raper Taco Hemingway.
 
 ![alt text](./readme/anim1.gif)
 
+## Technologies
+
+- Next 13, React, Prisma, Tailwind, Framer Motion, Zustand, TypeScript, Railway, PostgreSQL
+
 ## Inspiration
 
 Everything including photos, authors, colors etc. is taken from this web. Project
